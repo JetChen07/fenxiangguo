@@ -13,31 +13,31 @@ import com.fxg.util.SpringBeanFactory;
 
 public class MgrManager{
 	private ManagerDao managerDao;
-	public ManagerDao getManagerDao() {
+/*	public ManagerDao getManagerDao() {
 		return managerDao;
 	}
 
 	public void setManagerDao(ManagerDao managerDao) {
 		this.managerDao = managerDao;
-	}
+	}*/
 
 	private ShareDao shareDao;
-	public ShareDao getShareDao() {
+/*	public ShareDao getShareDao() {
 		return shareDao;
 	}
 
 	public void setShareDao(ShareDao shareDao) {
 		this.shareDao = shareDao;
-	}
+	}*/
 
 	private ImageDao imageDao;
-	public ImageDao getImageDao() {
+/*	public ImageDao getImageDao() {
 		return imageDao;
 	}
 
 	public void setImageDao(ImageDao imageDao) {
 		this.imageDao = imageDao;
-	}
+	}*/
 
 	//登录失败
 	public static final int LOGIN_FAIL = 0;
