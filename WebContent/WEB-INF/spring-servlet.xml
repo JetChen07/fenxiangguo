@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd 
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util.xsd  ">
+
+    <!-- HandlerMapping -->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    
+    <!-- HandlerAdapter -->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+    
+    <!-- ViewResolver -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+	<!-- 多请求处理控制器 -->  
+   	<bean id="paraMethodResolver"    
+       class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">    
+       <property name="paramName" value="action"/>    
+    </bean>    
+    
+    <!-- 验证码 -->
+    <bean name="/captcha.do" class="com.fxg.controller.CaptchaController">
+    	<property name ="captchaProducer" ref="captchaProducer"/>
+    </bean>
+    <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+		<property name="config">
+			<bean class="com.google.code.kaptcha.util.Config">
+				<constructor-arg>
+					<props>
+						<prop key="kaptcha.border">yes</prop>
+						<prop key="kaptcha.border.color">105,179,90</prop>
+						<prop key="kaptcha.textproducer.font.color">blue</prop>
+						<prop key="kaptcha.image.width">125</prop>
+						<prop key="kaptcha.image.height">45</prop>
+						<prop key="kaptcha.textproducer.font.size">45</prop>
+						<prop key="kaptcha.session.key">code</prop>
+						<prop key="kaptcha.textproducer.char.length">4</prop>
+						<prop key="kaptcha.textproducer.font.names">宋体,楷体,微软雅黑</prop>
+					</props>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+    
+    <bean name="/admin.do" class="com.fxg.controller.AdminController">
+    	<property name = "methodNameResolver">
+    		<ref bean = "paraMethodResolver"/>
+        </property> 
+    </bean>
+    <mvc:interceptors>  
+	    <mvc:interceptor>  
+	        <mvc:mapping path="/admin.do"/>  
+	        <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->  
+	        <bean class="com.fxg.interceptor.AdminInterceptor"/>  
+	    </mvc:interceptor>  
+	</mvc:interceptors>  
+    
+    
+    <bean name="/login.do" class="com.fxg.controller.LoginController">
+    </bean>
+    
+    
+    
+</beans>
