@@ -59,9 +59,10 @@
     		<ref bean = "paraMethodResolver"/>
         </property> 
     </bean>
+
     <mvc:interceptors>  
 	    <mvc:interceptor>  
-	        <mvc:mapping path="/admin.do"/>  
+	        <mvc:mapping path="/admin.do"/>   
 	        <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->  
 	        <bean class="com.fxg.interceptor.AdminInterceptor"/>  
 	    </mvc:interceptor>  
@@ -71,6 +72,6 @@
     <bean name="/login.do" class="com.fxg.controller.LoginController">
     </bean>
     
-    
+    <mvc:view-controller path="admin/right.jp" view-name="admin/right"/>
     
 </beans>

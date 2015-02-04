@@ -31,10 +31,7 @@ public class LoginController implements Controller{
 			resp.sendRedirect(req.getContextPath()+"/login.jsp");
 			return null;
 		}
-/*		if(!kaptcha.equals(kaptcha_key)){
-			resp.sendRedirect(req.getContextPath()+"/login.jsp");
-			return null;
-		}*/
+
 		Manager manager = new Manager();
 		manager.setName(username);
 		manager.setPass(password);
