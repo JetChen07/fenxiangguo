@@ -21,7 +21,7 @@
     <script src="${pageContext.request.contextPath}/Scripts/libra-2.0.js"></script>
     <script src="${pageContext.request.contextPath}/Scripts/ssdp-widget2.js"></script>
     <script src="${pageContext.request.contextPath}/Scripts/ajaxupload.js"></script>
-    <script src="${pageContext.request.contextPath}/Scripts/common.js"></script>
+    <script src="${pageContext.request.contextPath}/Scripts/common.js?1"></script>
     <script src="${pageContext.request.contextPath}/Scripts/jquery-ui.js"></script>
      
 <title>Insert title here</title>

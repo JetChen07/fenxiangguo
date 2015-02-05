@@ -1,7 +1,7 @@
 ﻿function ajaxUploads(uploadPhoto, spUpload, showPic) {
     var fileNum = "more";
     new AjaxUpload(uploadPhoto, {
-        action: 'uploadFile',
+        action: 'image.do?action=fileUpload',
         name: 'file',
         responseType: 'json',
         onSubmit: function (file, ext) {
@@ -14,8 +14,8 @@
         },
         onComplete: function (file, response) {
             $('#' + spUpload).empty();
-            var st;
-            st = response;
+            alert(response);
+            var st = response;
             if (st.Code == 0) {
                 $('#' + spUpload).html("文件上传成功！");
                 $("#" + showPic).attr("src", st.Message);
