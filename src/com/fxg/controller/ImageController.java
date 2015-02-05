@@ -26,13 +26,13 @@ public class ImageController extends MultiActionController{
 		MultipartFile mFile = multipartRequest.getFile("file");
 		if (mFile != null) {
 			String fileName = UUID.randomUUID() + ".png";
-			String path = request.getSession().getServletContext().getRealPath("/upload") +File.pathSeparator+ fileName;
+			String path = "C:////xampp//htdocs//image//" + fileName;
 			File localFile = new File(path);
 			mFile.transferTo(localFile);
 			request.setAttribute("fileUrl", path);
 			HashMap <String,Object> result = new HashMap<String,Object>();
 			result.put("Code", 0);
-			String message = Constant.ImagePath +"upload/"+fileName;
+			String message = Constant.ImagePath +fileName;
 			result.put("Message", message);
 			System.out.print(message);
 			ResultUtils.toJson(response, result);
