@@ -14,7 +14,6 @@
         },
         onComplete: function (file, response) {
             $('#' + spUpload).empty();
-            alert(response);
             var st = response;
             if (st.Code == 0) {
                 $('#' + spUpload).html("文件上传成功！");

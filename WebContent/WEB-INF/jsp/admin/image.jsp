@@ -135,7 +135,7 @@
             var image = $('#img').val();
             var model = { imagePath: image};
             $.ajax({
-                url: 'uploadImage',
+                url: 'admin.do?action=uploadImage',
                 type: 'post',
                 data: model,
                 success: function (data) {

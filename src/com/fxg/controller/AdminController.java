@@ -1,5 +1,6 @@
 package com.fxg.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import com.fxg.domain.Image;
 import com.fxg.domain.Share;
 import com.fxg.interceptor.AdminInterceptor;
 import com.fxg.service.MgrManager;
+import com.fxg.util.ResultUtils;
 
 public class AdminController extends MultiActionController{
 	 private Logger log = Logger.getLogger(AdminController.class);
@@ -49,5 +51,16 @@ public class AdminController extends MultiActionController{
 		mv.addObject("images", images);
 		mv.setViewName("admin/image");
 		return mv;
+	 }
+	 
+	 public void uploadImage(HttpServletRequest request,
+				HttpServletResponse response) throws Exception{
+		Image image = new Image();
+		String imagePath =  (String) request.getParameter("imagePath");
+		image.setImgUrl(imagePath);
+		MgrManager.getInstance().addImage(image);
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("Code", 0);
+		ResultUtils.toJson(response, result);
 	 }
 }
